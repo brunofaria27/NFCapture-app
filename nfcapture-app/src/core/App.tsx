@@ -1,22 +1,30 @@
 import React from 'react';
+import { Header } from '../components/Header/Header';
+// import { Footer } from '../components/Footer/Footer';
+import { Content } from '../components/Content/Content';
+import "./App.scss"
+import useEquipments from '../context/useEquipments/useEquipments';
+import EquipmentsContext from '../context/useEquipments/EquipmentsContext';
+import useUsers from '../context/useUsers/useUsers';
+import UsersContext from '../context/useUsers/UsersContext';
+
 
 function App() {
+
+  const equipmentsValues = useEquipments();
+  const usersValues = useUsers();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <EquipmentsContext.Provider value={equipmentsValues}>
+      <UsersContext.Provider value={usersValues}>
+        <div className="app__page">
+          <Header />
+          <div className="app__container">
+            <Content />
+          </div>
+        </div>
+      </UsersContext.Provider>
+    </EquipmentsContext.Provider>
   );
 }
 

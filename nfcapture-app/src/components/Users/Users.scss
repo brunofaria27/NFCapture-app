@@ -1,0 +1,22 @@
+@import "../../styles/colors.scss";
+
+.Users {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 30px;
+    align-items: center;
+
+    &__title {
+        font-size: 30px;
+        font-weight: bolder;
+        color: $clear_text;
+    }
+}

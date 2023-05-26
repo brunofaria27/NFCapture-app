@@ -1,0 +1,47 @@
+@import '../../styles/colors.scss';
+
+.container {
+    background: $purple_1;
+    background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 47vw;
+}
+
+.dark-btn {
+    border: none;
+    background-color: black;
+    color: $clear_text;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dark-btn:hover {
+    background-color: $blue_2;
+}
+
+.dark-btn:active {
+    transform: translateY(1px);
+    background-color: black;
+}
+
+.colored-btn {
+    border: none;
+    background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+    color: black;
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.colored-btn:hover {
+    background: linear-gradient(130deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+}
+
+.colored-btn:active {
+    transform: translateY(1px);
+    background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+}

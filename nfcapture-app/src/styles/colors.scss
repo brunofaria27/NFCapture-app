@@ -1,0 +1,24 @@
+$clear_text: rgb(233, 227, 224);
+
+$table_row: $clear_text;
+$table_header: rgb(0, 0, 0);
+
+$translucent: rgba(23, 2, 70, 0.39);;
+
+$purple_1: rgba(138, 84, 253, 1);
+$blue_1: rgba(70, 137, 177, 1);
+$blue_2: rgb(14, 41, 56);
+$green_1: rgba(5, 187, 104, 1);
+
+$background: $clear_text;
+
+:export {
+    $background: $background;
+    $purple_1: $purple_1;
+    $blue_1: $blue_1;
+    $blue_2: $blue_2;
+    $green_1: $green_1;
+    $translucent: $translucent;
+    $table_row: $table_row;
+    $table_header: $table_header;
+}
