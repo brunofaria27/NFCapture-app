@@ -35,23 +35,24 @@ export const Equipments = () => {
     },
     [updateEquipment],
   );
-  // fetch('http://localhost:8080/equipment')
-  //   .then(async response => {
-  //     const data = await response.json();
+  
+  fetch('http://localhost:8080/equipment')
+    .then(async response => {
+      const data = await response.json();
 
-  //     // check for error response
-  //     if (!response.ok) {
-  //       // get error message from body or default to response statusText
-  //       const error = (data && data.message) || response.statusText;
-  //       return Promise.reject(error);
-  //     }
+      // check for error response
+      if (!response.ok) {
+        // get error message from body or default to response statusText
+        const error = (data && data.message) || response.statusText;
+        return Promise.reject(error);
+      }
 
-  //     console.log(data);
-  //   })
-  //   .catch(error => {
-  //     // this.setState({ errorMessage: error.toString() });
-  //     console.error('There was an error!', error);
-  //   });
+      console.log(data);
+    })
+    .catch(error => {
+      // this.setState({ errorMessage: error.toString() });
+      console.error('There was an error!', error);
+    });
 
   return (
     <div className="Equipments">
