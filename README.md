@@ -16,7 +16,7 @@ $ yarn start
 
 --------------------
 ### 🚀 **API repository**
-- [API - Java](https://github.com/Guilherme-Dantas/nfcapture_api)
+- [API - TypeScript](https://github.com/brunofaria27/NFCapture-API)
 
 ### 📱 **Mobile APP**
 - [Mobile APP - React Native](https://github.com/Guilherme-Dantas/nfcaptureMobile)
