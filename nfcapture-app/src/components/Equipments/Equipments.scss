@@ -4,6 +4,28 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &__table {
+        background-color: $translucent;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0px 3px 10px black;
+        // min-width: 25vw;
+        color: $table_row;
+    }
+
+    td,
+    th {
+        text-align: left;
+        padding: 20px;
+    }
+
+    .btn-row {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
 }
 
 .header {
@@ -18,5 +40,32 @@
         font-size: 30px;
         font-weight: bolder;
         color: $clear_text;
+    }
+}
+
+.Form {
+    &__container {
+        color: $clear_text;
+        position: absolute;
+        top: 5%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        // background-color: $translucent;
+        background-color: black;
+        border-radius: 20px;
+        box-shadow: 0px 3px 10px $blue_1;
+        width: 250px;
+        padding: 20px;
+    }
+
+    button{
+        align-self: flex-start;
+    }
+
+    input{
+        background-color: $blue_2;
+        border: none;
+        border-radius: 5px;
     }
 }

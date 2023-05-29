@@ -1,21 +1,14 @@
 import { createContext } from 'react';
 
-export type SimplifiedEquipment = {
-    id: string;
-    name: string;
-};
-
 type EquipmentsContextType = {
-    equipments: SimplifiedEquipment[];
-    creteEquipment: (name: string) => void;
-    updateEquipment: (id: string, name: string) => void;
-    deleteEquipment: (id: string) => void;
+    equipments: { _id: string, nome: string, usos: string }[];
+    createEquipment: (name: string) => void;
+    deleteEquipment: (name: string) => void;
 };
 
 const EquipmentsContext = createContext<EquipmentsContextType>({
     equipments: [],
-    creteEquipment: () => { },
-    updateEquipment: () => { },
+    createEquipment: () => { },
     deleteEquipment: () => { },
 });
 

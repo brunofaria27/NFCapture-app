@@ -1,58 +1,65 @@
 import { transform } from "typescript";
 import EquipmentsContext from "../../context/useEquipments/EquipmentsContext";
-import NFCTable from "../NFCTable/NFCTable";
 import './Equipments.scss';
-import ModalForm from '../ModalForm/ModalForm';
-import { useCallback, useContext, useState } from "react";
-import { Modal } from "@mui/material";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Box, Modal } from "@mui/material";
 
 export const Equipments = () => {
 
-  const { equipments, creteEquipment, deleteEquipment, updateEquipment } = useContext(EquipmentsContext);
+  const { equipments, createEquipment, deleteEquipment } = useContext(EquipmentsContext);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "" });
+  const [updateTable, setUpdateTable] = useState(false);
+
+  useEffect(() => {
+    if (updateTable) {
+      setUpdateTable(false); // Reseta o estado para evitar loop infinito
+    }
+  }, [updateTable]);
+
+  const handleFormChange = (event: any) => {
+    setFormData(prevFormData => {
+      return {
+        ...prevFormData,
+        [event.target.name]: event.target.value,
+      }
+    })
+  }
+
+  const headers = ['id', 'name', 'uses'];
 
   const toggleForm = () => {
     setIsFormOpen(prevIsFormOpen => !prevIsFormOpen)
   }
 
-  const handleCreate = useCallback(
-    (data: {name: string}) => {
-      creteEquipment(data.name);
-    },
-    [creteEquipment],
+  const handleCreate = useCallback((name: string) => {
+    createEquipment(name);
+    setUpdateTable(true);
+  },
+    [createEquipment],
   );
 
-  const handleDelete = useCallback(
-    (id: string) => {
-      deleteEquipment(id);
-    },
+  const handleDelete = useCallback((name: string) => {
+    deleteEquipment(name);
+    setUpdateTable(true);
+  },
     [deleteEquipment],
   );
 
-  const handleUpdate = useCallback(
-    (data: {id: string, name: string}) => {
-      updateEquipment(data.id, data.name);
-    },
-    [updateEquipment],
-  );
-  
-  fetch('http://localhost:8080/equipment')
-    .then(async response => {
-      const data = await response.json();
+  const renderedHeaders = headers.map((header, index) => (
+    <th key={index}>{header.toUpperCase()}</th>
+  ));
 
-      // check for error response
-      if (!response.ok) {
-        // get error message from body or default to response statusText
-        const error = (data && data.message) || response.statusText;
-        return Promise.reject(error);
-      }
-
-      console.log(data);
-    })
-    .catch(error => {
-      // this.setState({ errorMessage: error.toString() });
-      console.error('There was an error!', error);
-    });
+  const renderedRows = equipments.map((equipment, index) => (
+    <tr key={index}>
+      <td>{equipment._id}</td>
+      <td>{equipment.nome}</td>
+      <td>{equipment.usos}</td>
+      <td className='btn-row'>
+        <button className='dark-btn' onClick={() => handleDelete(equipment.nome)}>delete</button>
+      </td>
+    </tr>
+  ));
 
   return (
     <div className="Equipments">
@@ -61,15 +68,40 @@ export const Equipments = () => {
           Equipments List
         </div>
         <button className="dark-btn" onClick={toggleForm}>Add new</button>
-        {isFormOpen && 
-        <Modal
-          open={isFormOpen}
-          onClose={toggleForm}
-        >
-          <ModalForm type="equipment" onSubmit={handleCreate} />
-        </Modal>}
+        {isFormOpen &&
+
+          <Modal
+            open={isFormOpen}
+            onClose={toggleForm}
+          >
+            <Box>
+              <div className="Form" style={{ marginLeft: "80%" }}>
+                <form className="Form__container">
+                  Create Equipment
+                  <input
+                    type='text'
+                    placeholder='Equipment Name'
+                    onChange={handleFormChange}
+                    name='name'
+                  />
+                  <button className="colored-btn" onClick={() => handleCreate(formData.name)}>Create</button>
+                </form>
+              </div>
+            </Box>
+          </Modal>
+
+        }
       </div>
-      <NFCTable onDelete={handleDelete} onUpdate={handleUpdate} tableRows={equipments}></NFCTable>
+      <table className="Equipments__table">
+        <thead>
+          <tr>
+            {renderedHeaders}
+          </tr>
+        </thead>
+        <tbody>
+          {renderedRows}
+        </tbody>
+      </table>
     </div >
   )
 } 
