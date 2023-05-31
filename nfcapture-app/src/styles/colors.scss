@@ -1,4 +1,5 @@
 $clear_text: rgb(233, 227, 224);
+$clear_text_2: rgb(161, 155, 152);
 
 $table_row: $clear_text;
 $table_header: rgb(0, 0, 0);
@@ -21,4 +22,6 @@ $background: $clear_text;
     $translucent: $translucent;
     $table_row: $table_row;
     $table_header: $table_header;
+    $clear_text: $clear_text;
+    $clear_text_2: $clear_text_2;
 }

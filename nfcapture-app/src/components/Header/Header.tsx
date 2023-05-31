@@ -1,4 +1,3 @@
-import * as React from "react";
 import "./Header.scss";
 import icon from "../../images/icon.png";
 

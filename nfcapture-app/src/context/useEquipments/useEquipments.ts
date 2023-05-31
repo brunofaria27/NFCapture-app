@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const useEquipments = () => {
   const url = "http://localhost:8000";
@@ -70,10 +70,38 @@ const useEquipments = () => {
       });
   }, []);
 
+  const addUseToEquipment = useCallback((name: string) => {
+    const equipment = {
+      nome: name
+    };
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(equipment)
+    };
+
+    fetch(url + '/use-equipment', requestOptions)
+      .then(async response => {
+        const isJson = response.headers.get('content-type')?.includes('application/json');
+        const data = isJson && await response.json();
+
+        if (!response.ok) {
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        }
+
+      })
+      .catch(error => {
+        console.error('There was an error creating a component!', error);
+      });
+  }, []);
+
+
   return {
     equipments: equipmentsData,
     deleteEquipment,
     createEquipment,
+    addUseToEquipment,
   };
 };
 

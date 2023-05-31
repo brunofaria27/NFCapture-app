@@ -1,12 +1,12 @@
-import EquipmentsContext from "../../context/useEquipments/EquipmentsContext";
+import UsersContext from "../../context/useUsers/UsersContext";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 
-export const Equipments = () => {
+export const Users = () => {
 
-  const { equipments, createEquipment, deleteEquipment, addUseToEquipment } = useContext(EquipmentsContext);
+  const { users, createUser, deleteUser } = useContext(UsersContext);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "" });
+  const [formData, setFormData] = useState({ name: "", email: "" });
   const [updateTable, setUpdateTable] = useState(false);
 
   useEffect(() => {
@@ -24,47 +24,39 @@ export const Equipments = () => {
     })
   }
 
-  const headers = ['id', 'name', 'uses'];
+  const headers = ['id', 'name', 'email'];
 
   const toggleForm = () => {
     setIsFormOpen(prevIsFormOpen => !prevIsFormOpen)
   }
 
-  const handleCreate = useCallback((event: React.MouseEvent<HTMLButtonElement>, name: string) => {
+  const handleCreate = useCallback((event: React.MouseEvent<HTMLButtonElement>, name: string, email: string) => {
     toggleForm();
     // event.preventDefault();
-    createEquipment(name);
+    createUser(name, email);
     setUpdateTable(true);
   },
-    [createEquipment],
+    [createUser],
   );
 
   const handleDelete = useCallback((name: string) => {
-    deleteEquipment(name);
+    deleteUser(name);
     setUpdateTable(true);
   },
-    [deleteEquipment],
-  );
-
-  const handleUse = useCallback((name: string) => {
-    addUseToEquipment(name);
-    setUpdateTable(true);
-  },
-    [addUseToEquipment],
+    [deleteUser],
   );
 
   const renderedHeaders = headers.map((header, index) => (
     <th key={index}>{header.toUpperCase()}</th>
   ));
 
-  const renderedRows = equipments.map((equipment, index) => (
+  const renderedRows = users.map((user, index) => (
     <tr key={index}>
-      <td>{equipment._id}</td>
-      <td>{equipment.nome}</td>
-      <td>{equipment.usos}</td>
+      <td>{user._id}</td>
+      <td>{user.nome}</td>
+      <td>{user.email}</td>
       <td className='btn-row'>
-        <button className='dark-btn' onClick={() => handleUse(equipment.nome)}>use</button>
-        <button className='dark-btn' onClick={() => handleDelete(equipment.nome)}>delete</button>
+        <button className='dark-btn' onClick={() => handleDelete(user.email)}>delete</button>
       </td>
     </tr>
   ));
@@ -73,7 +65,7 @@ export const Equipments = () => {
     <div className="table-container">
       <div className="header">
         <div className="header__title">
-          Equipments List
+          Users List
         </div>
         <button className="dark-btn" onClick={toggleForm}>Add new</button>
         {isFormOpen &&
@@ -82,16 +74,22 @@ export const Equipments = () => {
             onClose={toggleForm}
           >
             <Box>
-              <div className="form" style={{ marginLeft: "80%" }}>
+              <div className="form" style={{ marginLeft: "30%" }}>
                 <form autoComplete="off" className="form__container">
-                  Create Equipment
+                  Create User
                   <input
                     type='text'
-                    placeholder='Equipment Name'
+                    placeholder='User Name'
                     onChange={handleFormChange}
                     name='name'
                   />
-                  <button className="colored-btn" onClick={(event) => { handleCreate(event, formData.name) }}>Create</button>
+                  <input
+                    type='text'
+                    placeholder='Email'
+                    onChange={handleFormChange}
+                    name='email'
+                  />
+                  <button className="colored-btn" onClick={(event) => handleCreate(event, formData.name, formData.email)}>Create</button>
                 </form>
               </div>
             </Box>

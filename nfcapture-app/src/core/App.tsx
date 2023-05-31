@@ -7,6 +7,7 @@ import useEquipments from '../context/useEquipments/useEquipments';
 import EquipmentsContext from '../context/useEquipments/EquipmentsContext';
 import useUsers from '../context/useUsers/useUsers';
 import UsersContext from '../context/useUsers/UsersContext';
+import { Footer } from '../components/Footer/Footer';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <div className="app__container">
             <Content />
           </div>
+          <Footer />
         </div>
       </UsersContext.Provider>
     </EquipmentsContext.Provider>

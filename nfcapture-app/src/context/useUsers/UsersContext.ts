@@ -1,21 +1,14 @@
 import { createContext } from 'react';
 
-export type SimplifiedUser = {
-    id: string;
-    name: string;
-};
-
 type UsersContextType = {
-    users: SimplifiedUser[];
-    creteUser: (name: string) => void;
-    updateUser: (id: string, name: string) => void;
-    deleteUser: (id: string) => void;
+    users: { _id: string, nome: string, email: string }[];
+    createUser: (name: string, email: string) => void;
+    deleteUser: (email: string) => void;
 };
 
 const UsersContext = createContext<UsersContextType>({
     users: [],
-    creteUser: () => { },
-    updateUser: () => { },
+    createUser: () => { },
     deleteUser: () => { },
 });
 

@@ -1,0 +1,26 @@
+@import '../../styles/colors.scss';
+
+.Footer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: calc(100% - 44vw - 90px);
+  position: sticky;
+  bottom: auto;
+  background-color: rgb(0, 0, 0);
+  color: $clear_text;
+  box-shadow: 0px 3px 25px black;
+
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: $clear_text_2;
+    font-size: 12px;
+  }
+}
+
+.pipe {
+  border-left: 1px solid $blue_1;
+  height: 35px;
+}
