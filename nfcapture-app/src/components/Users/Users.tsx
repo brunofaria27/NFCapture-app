@@ -23,7 +23,7 @@ export const Users = () => {
     });
   };
 
-  const headers = ["id", "name", "email"];
+  const headers = ["name", "email"];
 
   const toggleForm = () => {
     setIsFormOpen((prevIsFormOpen) => !prevIsFormOpen);
@@ -57,7 +57,6 @@ export const Users = () => {
 
   const renderedRows = users.map((user, index) => (
     <tr key={index}>
-      <td>{user._id}</td>
       <td>{user.nome}</td>
       <td>{user.email}</td>
       <td className="btn-row">

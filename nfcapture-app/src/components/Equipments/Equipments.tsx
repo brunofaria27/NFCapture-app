@@ -24,7 +24,7 @@ export const Equipments = () => {
     })
   }
 
-  const headers = ['id', 'name', 'uses'];
+  const headers = ['name', 'uses'];
 
   const toggleForm = () => {
     setIsFormOpen(prevIsFormOpen => !prevIsFormOpen)
@@ -59,7 +59,6 @@ export const Equipments = () => {
 
   const renderedRows = equipments.map((equipment, index) => (
     <tr key={index}>
-      <td>{equipment._id}</td>
       <td>{equipment.nome}</td>
       <td>{equipment.usos}</td>
       <td className='btn-row'>
