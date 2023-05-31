@@ -1,16 +1,27 @@
 @import '../../styles/colors.scss';
 
 .container {
-    background: $purple_1;
-    background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+    position: relative;
+    overflow: hidden;
+}
 
-    background-repeat: no-repeat;
-    background-size: 100%;
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
 
+.content-overlay {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    min-height: 44vw;
+    min-height: 100vh; /* Defina a altura total da tela */
 }
 
 .dark-btn {

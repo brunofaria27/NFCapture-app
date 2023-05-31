@@ -72,7 +72,15 @@ export const Equipments = () => {
   return (
     <div className="table-container">
       <div className="header">
-        <div className="header__title">
+        <div
+          className="header__title"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
           Equipments List
         </div>
         <button className="dark-btn" onClick={toggleForm}>Add new</button>
