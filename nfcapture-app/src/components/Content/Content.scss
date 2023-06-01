@@ -1,8 +1,10 @@
 @import '../../styles/colors.scss';
 
 .container {
-    background: $purple_1;
-    background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+    // background: $purple_1;
+    // background: linear-gradient(90deg, $purple_1 9%, $blue_1 55%, $green_1 100%);
+
+    background-image: url('../../images/xIzYo2d-minecraft-hd-wallpaper.jpg') ;
 
     background-repeat: no-repeat;
     background-size: 100%;
@@ -56,9 +58,9 @@
     gap: 20px;
 
     &__table {
-        background-color: $translucent;
-        // background-color: transparent;
-        // backdrop-filter: blur(100px);
+        // background-color: $translucent;
+        background-color: transparent;
+        backdrop-filter: blur(100px);
         padding: 20px;
         border-radius: 20px;
         box-shadow: 0px 3px 10px black;
